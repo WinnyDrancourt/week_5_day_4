@@ -102,3 +102,16 @@ puts "Commentaires OK !"
 end
 puts "Likes OK !"
 #################################
+
+#Create Comment of Comment
+20.times do
+  commentaire = Commentaire.all.shuffle.last
+  user = User.all.shuffle.last
+  PolyComment.create(
+    content: Faker::Lorem.paragraph,
+    commentaire_id: commentaire.id,
+    user_id: user.id
+  )
+end
+puts "Commentaires of Commentaires OK !"
+#########################
