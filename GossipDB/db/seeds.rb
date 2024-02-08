@@ -13,7 +13,7 @@ JoinTableGossipTag.delete_all
     zip_code: Faker::Address.zip
   )
 end
-puts "City OK !"
+puts "Cities OK !"
 ##############################
 
 #Create Users
@@ -24,7 +24,7 @@ puts "City OK !"
     email: Faker::Internet.email,
     age: Faker::Number.within(range: 18..90),
     description: Faker::Quotes::Chiquito.expression,
-    city_id: City.all.shuffle.last.id
+    city_id: City.all.shuffle.last.id,
   )
 end
 puts "Users OK !"
@@ -50,10 +50,10 @@ user = User.all.shuffle.last
   Gossip.create(
     title: Faker::Movies::StarWars.call_squadron,
     content: Faker::Movies::StarWars.quote,
-    user_id: user.id
+    user_id: user.id,
   )
 end
-puts "Gossip OK !"
+puts "Gossips OK !"
 ######################################
 
 #Create TAG
@@ -62,7 +62,7 @@ puts "Gossip OK !"
     title: Faker::Games::Pokemon.name
   )
 end
-puts "Tag OK !"
+puts "Tags OK !"
 ######################################
 
 #JoinTable
@@ -74,5 +74,18 @@ puts "Tag OK !"
       tag_id: tag.id
     )
 end
-puts "Join OK !"
+puts "Joins OK !"
 ##################################
+
+#Create Comment
+50.times do
+  gossip = Gossip.all.shuffle.last
+  user = User.all.shuffle.last
+  Commentaire.create(
+    content: Faker::Fantasy::Tolkien.poem,
+    gossip_id: gossip.id,
+    user_id: user.id
+  )
+end
+puts "Commentaires OK !"
+##############################
