@@ -1,9 +1,78 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+#Delete before reseed
+City.delete_all
+User.delete_all
+PrivateMessage.delete_all
+Gossip.delete_all
+JoinTableGossipTag.delete_all
+#################
+
+#Create City
+10.times do
+  City.create(
+    name: Faker::Address.city,
+    zip_code: Faker::Address.zip
+  )
+end
+puts "City OK !"
+##############################
+
+#Create Users
+10.times do
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    age: Faker::Number.within(range: 18..90),
+    description: Faker::Quotes::Chiquito.expression,
+    city_id: City.all.shuffle.last.id
+  )
+end
+puts "Users OK !"
+#############################
+
+#Create PrivateMessage
+
+10.times do
+  recipient = User.all.shuffle.last #random recipient
+  sender = User.all.shuffle.first #random sender
+    PrivateMessage.create(
+      content: Faker::Fantasy::Tolkien.poem,
+      recipient_id: recipient.id,
+      sender_id: sender.id
+  )
+end
+puts "Private Messages OK !"
+####################################
+
+#Create Gossip
+10.times do
+user = User.all.shuffle.last
+  Gossip.create(
+    title: Faker::Movies::StarWars.call_squadron,
+    content: Faker::Movies::StarWars.quote,
+    user_id: user.id
+  )
+end
+puts "Gossip OK !"
+######################################
+
+#Create TAG
+10.times do
+  Tag.create(
+    title: Faker::Games::Pokemon.name
+  )
+end
+puts "Tag OK !"
+######################################
+
+#JoinTable
+10.times do
+  gossip = Gossip.all.shuffle.last
+  tag = Tag.all.shuffle.first
+    JoinTableGossipTag.create(
+      gossip_id: gossip.id,
+      tag_id: tag.id
+    )
+end
+puts "Join OK !"
+##################################

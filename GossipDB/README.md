@@ -1,24 +1,30 @@
-# README
+# Week_5 Day_4 : Gossip
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Some work around DB and active record with rails. Gossip
+Data seed create with Faker.
 
-Things you may want to cover:
+to install :
+`bundle install`
+and enter into Rails console :
+`rails c`
 
-* Ruby version
+# Some test
 
-* System dependencies
+we take randomly from DB User & gossip to test :
 
-* Configuration
+```
+user = User.order(Arel.sql('RANDOM()')).first
+gossip = Gossip.order(Arel.sql('RANDOM()')).first
+```
 
-* Database creation
+```
+tp user.received_messages
+tp user.sent_messages
+tp user.gossip
+tp user.city
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+tp gossip.tags
+tp gossip.user
+```

@@ -10,7 +10,7 @@ and enter into Rails console :
 
 # Some test
 
-we take randomly fromd DB Doc and patient :
+we take randomly from DB Doc and patient :
 
 ```
 doc = Doctor.order(Arel.sql('RANDOM()')).first

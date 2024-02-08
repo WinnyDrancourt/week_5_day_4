@@ -1,4 +1,4 @@
-# Week_5 Day_4 : Freedoc
+# Week_5 Day_4 : DogSitting
 
 Some work around DB and active record with rails. DogSitting
 Data seed create with Faker.
@@ -10,7 +10,7 @@ and enter into Rails console :
 
 # Some test
 
-we take randomly fromd DB Doc and patient :
+we take randomly from DB dog & Dogsitter :
 
 ```
 dog = Animal.order(Arel.sql('RANDOM()')).first
