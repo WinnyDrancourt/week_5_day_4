@@ -1,24 +1,28 @@
-# README
+# Week_5 Day_4 : Freedoc
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Some work around DB and active record with rails. DogSitting
+Data seed create with Faker.
 
-Things you may want to cover:
+to install :
+`bundle install`
+and enter into Rails console :
+`rails c`
 
-* Ruby version
+# Some test
 
-* System dependencies
+we take randomly fromd DB Doc and patient :
 
-* Configuration
+```
+dog = Animal.order(Arel.sql('RANDOM()')).first
+sitter = AnimalSitter.order(Arel.sql('RANDOM()')).first
+```
 
-* Database creation
+```
+tp dog.aninmal_sitters
+tp dog.stroll
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+tp sitter.animal
+tp sitter.city
+```
