@@ -4,6 +4,7 @@ User.delete_all
 PrivateMessage.delete_all
 Gossip.delete_all
 JoinTableGossipTag.delete_all
+Commentaire.delete_all
 #################
 
 #Create City
@@ -89,3 +90,15 @@ puts "Joins OK !"
 end
 puts "Commentaires OK !"
 ##############################
+
+#Create Likes
+20.times do
+  gossip = Gossip.all.shuffle.last
+  commentaire = Commentaire.all.shuffle.last
+  Like.create(
+    gossip_id: gossip.id,
+    commentaire_id: commentaire.id,
+  )
+end
+puts "Likes OK !"
+#################################
